@@ -26,3 +26,12 @@ class Datastore():
         response = requests.get('https://api.infrasolutions.au/api/get_password?username={username}')
         json_respnose = response.json()
         return json_respnose
+    def login(self, username, passowrd):
+        response = request.get('https://api.infrasolutions.au/api/get_password?username={username}')
+        json_respnose = response.json()
+        return json_respnose
+        if passowrd == response:
+            print("Success, you logged in!")
+        else:
+            print("Wrong password!")
+        json_respnose = response.json()
