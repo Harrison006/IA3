@@ -41,9 +41,13 @@ class Datastore:
         return json_respnose
 
     def login(self, username, passowrd):
-        response = request.get(
-            "https://api.infrasolutions.au/api/get_password?username={username}"
-        )
+        
+        # url for Api Calls
+        base_url = "https://api.infrasolutions.au/api/get_password?username={}"
+        # format url
+        url = base_url.format(username)
+
+        response = request.get(url)
         json_respnose = response.json()
         return json_respnose
         if passowrd == response:
