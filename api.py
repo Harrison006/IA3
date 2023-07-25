@@ -1,33 +1,49 @@
 import requests
 
+# api_server = 'https://api.infrasolutions.au/api'
 
-class Datastore():
+
+class Datastore:
     def get_usernames(self):
-        response = requests.get('https://api.infrasolutions.au/api/get_usernames')
+        response = requests.get("https://api.infrasolutions.au/api/get_usernames")
         json_respnose = response.json()
         return json_respnose
-    
+
     def get_staff_names(self):
-        response = requests.get('https://api.infrasolutions.au/api/get_staff_names')
+        response = requests.get("https://api.infrasolutions.au/api/get_staff_names")
         json_respnose = response.json()
         return json_respnose
-    
+
     def get_assessments(self, firstname, lastname):
-        response = requests.get('https://api.infrasolutions.au/api/get_assessments?firstname={firstname}&lastname={lastname}')
+        response = requests.get(
+            "https://api.infrasolutions.au/api/get_assessments?firstname={}&lastname={}"
+        )
         json_respnose = response.json()
         return json_respnose
-    
+
     def add_patient(self, first_name, last_name, email, gender, address, suburb, phone):
-        response = requests.get('https://api.infrasolutions.au/api/get_assessments?firstname={firstname}&lastname={lastname}&email={email}&gender={gender}&address{address}&suburb{suburb}&phone={phone}')
+        base_url = "https://api.infrasolutions.au/api/get_assessments?firstname={}&lastname={}&email={}&gender={}&address{}&suburb{}&phone={}"
+        url = base_url.format(
+            first_name, last_name, email, gender, address, suburb, phone
+        )
+        response = requests.put(url)
         json_response = response.json()
         return json_response
-    
+
     def get_password(self, username):
-        response = requests.get('https://api.infrasolutions.au/api/get_password?username={username}')
+        # url for Api Calls
+        base_url = "https://api.infrasolutions.au/api/get_password?username={}"
+        # format url
+        url = base_url.format(username)
+        # printing json response
+        response = requests.get(url)
         json_respnose = response.json()
         return json_respnose
+
     def login(self, username, passowrd):
-        response = request.get('https://api.infrasolutions.au/api/get_password?username={username}')
+        response = request.get(
+            "https://api.infrasolutions.au/api/get_password?username={username}"
+        )
         json_respnose = response.json()
         return json_respnose
         if passowrd == response:
