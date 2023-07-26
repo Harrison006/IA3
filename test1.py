@@ -1,14 +1,17 @@
 import requests
-api_server = 'https://api.infrasolutions.au/api'
 
-username = input("Username: ")
+first_name = 'test'
+last_name = 'bloke'
+email = 'test@gmail.com'
+gender = 'male'
+address = '123 m st'
+suburb = 'place'
+phone = '123456789'
 
-# url for Api Calls
-base_url = api_server+'?username={}'
-# format url
-url = base_url.format(username)
-        
-response = requests.get(url)
-json_respnose = response.json()
 
-print(json_respnose) 
+base_url = "https://api.infrasolutions.au/api/add_patient?firstname={}&lastname={}&email={}&gender={}&address{}&suburb{}&phone={}"
+url = base_url.format(first_name, last_name, email, gender, address, suburb, phone)
+
+response = requests.post(url)
+
+print(response) 

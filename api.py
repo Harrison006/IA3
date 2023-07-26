@@ -22,13 +22,12 @@ class Datastore:
         return json_respnose
 
     def add_patient(self, first_name, last_name, email, gender, address, suburb, phone):
-        base_url = "https://api.infrasolutions.au/api/get_assessments?firstname={}&lastname={}&email={}&gender={}&address{}&suburb{}&phone={}"
+        base_url = "https://api.infrasolutions.au/api/add_patient?firstname={}&lastname={}&email={}&gender={}&address{}&suburb{}&phone={}"
         url = base_url.format(
             first_name, last_name, email, gender, address, suburb, phone
         )
-        response = requests.put(url)
-        json_response = response.json()
-        return json_response
+        response = requests.post(url)
+        return response
 
     def get_password(self, username):
         # url for Api Calls
