@@ -29,7 +29,7 @@ print(api_test)
         url = base_url.format(username)
     
     # outputting the whole API call in JSON
-        response = requests.get(url)
+        response = requests.get(url) # Actual API call
         json_respnose = response.json()
         return json_respnose
 ```
