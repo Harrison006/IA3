@@ -18,12 +18,14 @@ print(df)
 app = Dash(__name__)
 
 # App layout
-app.layout = html.Div(
-    [
-        html.Div(children="My First App with Data"),
-        dash_table.DataTable(data=df.to_string("records"), page_size=10, columns=[{"id": i, "name": i} for i in df.columns]),
-    ]
-)
+app.layout = dash_table.DataTable(df.to_string('records'), [{"name": i, "id": i} for i in df.columns])
+
+#app.layout = html.Div(
+#    [
+#        html.Div(children="My First App with Data"),
+#        dash_table.DataTable(data=df.to_string("records"), page_size=14, columns=[{"name": i, "id": i} for i in df.columns]),
+#    ]
+#)
 """
 app.layout = html.Div([
 dash_table.DataTable(
