@@ -19,7 +19,7 @@ app = Dash(__name__)
 
 # App layout
 app.layout = html.Div([
-    html.Div(children='My First App with Data'),
+    html.Div(children='Clinician Stats'),
     dash_table.DataTable(data=df.to_dict('records'), page_size=50)
 ])
 
