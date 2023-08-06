@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.express as px
 import json
 import requests
-
+import http.server
 
 response = requests.get(
     "https://api.infrasolutions.au/api/get_clinician_stats?username=bahlin1"
