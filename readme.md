@@ -2,6 +2,14 @@
 
 this is an IA3 for QCAA digital solutions.
 
+### run this as a deomon
+
+```bash
+screen -S your_session_name
+python your_script.py
+(Ctrl+A, D)  # Detach from the screen session
+```
+
 ### Modules needed
 - Requests
 - Black
