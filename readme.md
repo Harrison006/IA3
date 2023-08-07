@@ -2,7 +2,7 @@
 
 this is an IA3 for QCAA digital solutions.
 
-### run this as a deomon
+### run this as a daemon
 
 ```bash
 screen -S your_session_name
