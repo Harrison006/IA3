@@ -9,7 +9,7 @@ from flask import Response
 
 # Initialize the Dash app
 
-dash.register_page(__name__, path='/asses')
+dash.register_page(__name__, path='/patient-assesments')
 
 layout = html.Div(children=[
     html.H1("Patient Stats"),
@@ -18,7 +18,6 @@ layout = html.Div(children=[
     html.Button('Get Data', id='get-data-button', n_clicks=0),
     html.Div(id='output-container')
 ])
-
 # Define callback to fetch data from API and display in a table
 @callback(
     Output('output-container', 'children', allow_duplicate=True),
