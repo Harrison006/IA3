@@ -1,15 +1,12 @@
+# Import packages
+from dash import Dash, html, dash_table, dcc, callback, Output, Input
+import pandas as pd
+import plotly.express as px
+import json
 import requests
-from api import Datastore
-
-first_name = 'test'
-last_name = 'bloke'
-email = 'test@gmail.com'
-gender = 'male'
-address = '123 m st'
-suburb = 'place'
-phone = '123456789'
-
-db = Datastore()
-api_test = db.add_patient(first_name, last_name, email, gender, address, suburb, phone)
-
-print(api_test)
+import http.server
+response = requests.get(
+    "https://api.infrasolutions.au/api/get_clinician_stats?username=bahlin1"
+)
+with open("./response.json") as json_file:
+    data = json.load(json_file)
