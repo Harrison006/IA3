@@ -9,28 +9,33 @@ from flask import Response
 
 # Initialize the Dash app
 
-dash.register_page(__name__, path='/patient-assesments')
+dash.register_page(__name__, path="/patient-assesments")
 
-layout = html.Div(children=[
-    html.H1("Patient Stats"),
-    dcc.Input(id='text-first', type='text', placeholder='Enter firstname...'),
-    dcc.Input(id='text-last', type='text', placeholder='Enter lastname...'),
-    html.Button('Get Data', id='get-data-button', n_clicks=0),
-    html.Div(id='output-container')
-])
+layout = html.Div(
+    children=[
+        html.H1("Patient Stats"),
+        dcc.Input(id="text-first", type="text", placeholder="Enter firstname..."),
+        dcc.Input(id="text-last", type="text", placeholder="Enter lastname..."),
+        html.Button("Get Data", id="get-data-button", n_clicks=0),
+        html.Div(id="output-container"),
+    ]
+)
+
+
 # Define callback to fetch data from API and display in a table
 @callback(
-    Output('output-container', 'children', allow_duplicate=True),
-    [Input('get-data-button', 'n_clicks')],
-    [State('text-first', 'value'),
-     State('text-last', 'value')],
-    prevent_initial_call=True
+    Output("output-container", "children", allow_duplicate=True),
+    [Input("get-data-button", "n_clicks")],
+    [State("text-first", "value"), State("text-last", "value")],
+    prevent_initial_call=True,
 )
 def fetch_and_display_data(n_clicks, first_name, last_name):
     if n_clicks > 1 and first_name and last_name:
         try:
             # Replace 'API_URL' with the actual API URL
-            response = requests.get(f'https://api.infrasolutions.au/api/get_assessments?first_name={first_name}&last_name={last_name}')
+            response = requests.get(
+                f"https://api.infrasolutions.au/api/get_assessments?first_name={first_name}&last_name={last_name}"
+            )
 
             if response.status_code == 200:
                 api_data = response.json()  # Parse JSON data from the response
@@ -39,12 +44,12 @@ def fetch_and_display_data(n_clicks, first_name, last_name):
                 if employee_data:
                     # Create a DataFrame from the JSON data
                     df = pd.DataFrame(employee_data)
-                    
+
                     # Create a Dash DataTable component
                     table = dash_table.DataTable(
-                        data=df.to_dict('records'),
-                        columns=[{'name': col, 'id': col} for col in df.columns],
-                        style_table={'height': '300px', 'overflowY': 'auto'}
+                        data=df.to_dict("records"),
+                        columns=[{"name": col, "id": col} for col in df.columns],
+                        style_table={"height": "300px", "overflowY": "auto"},
                     )
                     return table
                 else:
@@ -55,4 +60,3 @@ def fetch_and_display_data(n_clicks, first_name, last_name):
             return html.Div(f"Error: {str(e)}")
     else:
         return html.Div("Please fill in both first name and last name.")
-
