@@ -8,23 +8,23 @@ import io
 from flask import Response
 
 # Initialize the Dash app
-dash.register_page(__name__, path="/clincian-ctatisitcs")
+dash.register_page(__name__, path="/clincian-statisitcs")
 
 layout = html.Div(
     children=[
         html.H1("Clinician Stats Caller"),
-        dcc.Input(id="text-input", type="text", placeholder="Enter Username..."),
-        html.Button("Get Data", id="get-data-1", n_clicks=0),
-        html.Div(id="output-1"),
+        dcc.Input(id="text-input-22", type="text", placeholder="Enter Username..."),
+        html.Button("Get Data", id="get-data-66", n_clicks=0),
+        html.Div(id="output-66"),
     ]
 )
 
 
 # Define callback to fetch data from API and display in a table
 @callback(
-    Output("output-1", "children"),
-    [Input("get-data-1", "n_clicks")],
-    [State("text-input", "value")],
+    Output("output-66", "children"),
+    [Input("get-data-66", "n_clicks")],
+    [State("text-input-22", "value")],
     prevent_initial_call=True,
 )
 def fetch_data_from_api(n_clicks, input_value):
@@ -49,12 +49,12 @@ def fetch_data_from_api(n_clicks, input_value):
                         columns=[{"name": col, "id": col} for col in df.columns],
                         style_table={"height": "300px", "overflowY": "auto"},
                     )
-                    output.append(table)
+                    return [table]
                 else:
-                    output.append(html.Div("No data available."))
+                    return [html.Div("No data available.")]
             else:
-                output.append(html.Div("API request failed."))
+                return [html.Div("API request failed.")]
         except Exception as e:
-            output.append(html.Div(f"Error: {str(e)}"))
+            return [html.Div(f"Error: {str(e)}")]
     else:
-        output.append(html.Div("Please enter something."))
+       return [html.Div("Please enter something.")]
